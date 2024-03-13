@@ -9,7 +9,7 @@ import { Loading } from '@/components/Loading'
 import { Recipe } from '@/components/Recipe'
 import { Ingredients } from '@/components/Ingredients'
 
-export function Recipes() {
+export default function Recipes() {
     const [isLoading, setIsLoading] = useState(true)
     const [recipes, setRecipes] = useState<RecipeResponse[]>([])
     const [ingredients, setIngredients] = useState<IngredientResponse[]>([])
@@ -35,12 +35,14 @@ export function Recipes() {
         return <Loading />
     }
 
+    console.log(recipes)
+
     return (
         <View className="flex-1">
             <View className="pt-16 px-8 mb-3">
                 <MaterialIcons size={32} name="arrow-back" onPress={() => router.back()} />
 
-                <Text className="font-bold text-lg mb-3"> Ingredientes </Text>
+                <Text className="mt-8 font-bold text-3xl mb-3"> Ingredientes </Text>
             </View>
 
             <Ingredients ingredients={ingredients} />

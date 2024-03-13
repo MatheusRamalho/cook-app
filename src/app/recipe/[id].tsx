@@ -9,7 +9,7 @@ import { Step } from '@/components/Step'
 import { Loading } from '@/components/Loading'
 import { Ingredients } from '@/components/Ingredients'
 
-export function Recipe() {
+export default function Recipe() {
     const [isLoading, setIsLoading] = useState(true)
     const [recipe, setRecipe] = useState<RecipeResponse | null>(null)
     const [ingredients, setIngredients] = useState<IngredientResponse[]>([])
@@ -40,22 +40,27 @@ export function Recipe() {
         return <Redirect href="/" />
     }
 
+    console.log(ingredients)
+
     return (
         <View className="flex-1">
             <Image className="w-full h-48 bg-gray-300" source={{ uri: recipe.image }} alt="" />
 
-            <View className="-mt-6 bg-white rounded-t-[20px]">
+            <View className="-mt-6 bg-white rounded-t-3xl">
                 <View className="p-8">
                     <MaterialIcons size={32} name="arrow-back" onPress={() => router.back()} />
 
-                    <Text className="font-bold text-lg mt-6"> {recipe.name} </Text>
-                    <Text className="text-sm text-gray-400 font-regular"> {recipe.minutes} minutos de preparo </Text>
+                    <Text className="font-bold text-2xl mt-6"> {recipe.name} </Text>
+
+                    <Text className="ml-1 mt-1 text-base text-gray-400 font-regular">
+                        {recipe.minutes} minutos de preparo
+                    </Text>
                 </View>
 
                 <Ingredients ingredients={ingredients} />
 
                 <View className="p-8">
-                    <Text className="text-sm font-medium mb-4">Modo de preparado</Text>
+                    <Text className="text-lg font-bold mb-4">Modo de preparado</Text>
 
                     <FlatList
                         data={preparations}

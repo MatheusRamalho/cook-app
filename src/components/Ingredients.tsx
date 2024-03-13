@@ -12,7 +12,7 @@ export function Ingredients({ ingredients }: IngredientsProps) {
     return (
         <ScrollView
             horizontal
-            className="h-14 max-h-14 bg-red-200"
+            className="h-14 max-h-14"
             contentContainerStyle={{ gap: 12, paddingHorizontal: 32 }}
             showsHorizontalScrollIndicator={false}
         >

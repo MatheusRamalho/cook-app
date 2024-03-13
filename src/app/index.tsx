@@ -28,13 +28,14 @@ export default function Home() {
     }
 
     function handleSearch() {
+        // console.log(`recipes/${selected}`)
         router.navigate(`/recipes/${selected}`)
     }
 
     useEffect(() => {
         services.ingredients
             .findAll()
-            .then((data) => setIngredients(data))
+            .then(setIngredients)
             .finally(() => setIsLoading(false))
     }, [])
 
@@ -62,17 +63,18 @@ export default function Home() {
                 }}
                 showsHorizontalScrollIndicator={false}
             >
-                {ingredients.map((ingredient) => (
-                    <>
-                        <Ingredient
-                            key={ingredient.id}
-                            name={ingredient.name}
-                            image={`${services.storage.imagePath}/${ingredient.image}`}
-                            selected={selected.includes(ingredient.id)}
-                            onPress={() => handleToggleSelected(ingredient.id)}
-                        />
-                    </>
-                ))}
+                {ingredients.length > 0 &&
+                    ingredients.map((ingredient) => (
+                        <>
+                            <Ingredient
+                                key={ingredient.id}
+                                name={ingredient.name}
+                                image={`${services.storage.imagePath}/${ingredient.image}`}
+                                selected={selected.includes(ingredient.id)}
+                                onPress={() => handleToggleSelected(ingredient.id)}
+                            />
+                        </>
+                    ))}
             </ScrollView>
 
             {selected.length > 0 && (
