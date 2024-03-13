@@ -29,7 +29,6 @@ export default function Home() {
 
     function handleSearch() {
         router.navigate(`/recipes/${selected}`)
-        // router.navigate("/recipes/" + selected)
     }
 
     useEffect(() => {
@@ -64,13 +63,15 @@ export default function Home() {
                 showsHorizontalScrollIndicator={false}
             >
                 {ingredients.map((ingredient) => (
-                    <Ingredient
-                        key={ingredient.id}
-                        selected={selected.includes(ingredient.id)}
-                        name={`${services.storage.imagePath}/${ingredient.name}`}
-                        image={ingredient.image}
-                        onPress={() => handleToggleSelected(ingredient.id)}
-                    />
+                    <>
+                        <Ingredient
+                            key={ingredient.id}
+                            name={ingredient.name}
+                            image={`${services.storage.imagePath}/${ingredient.image}`}
+                            selected={selected.includes(ingredient.id)}
+                            onPress={() => handleToggleSelected(ingredient.id)}
+                        />
+                    </>
                 ))}
             </ScrollView>
 
