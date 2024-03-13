@@ -1,12 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Alert, ScrollView, Text, View } from 'react-native'
 import { router } from 'expo-router'
 
+import { services } from '@/services'
 import { Ingredient } from '@/components/Ingredient'
 import { Selected } from '@/components/Selected'
+import { Loading } from '@/components/Loading'
 
 export default function Home() {
+    const [isLoading, setIsLoading] = useState(true)
     const [selected, setSelected] = useState<string[]>([])
+    const [ingredients, setIngredients] = useState<IngredientResponse[]>([])
 
     function handleToggleSelected(value: string) {
         if (selected.includes(value)) {
@@ -24,7 +28,19 @@ export default function Home() {
     }
 
     function handleSearch() {
-        router.navigate('/recipes/')
+        router.navigate(`/recipes/${selected}`)
+        // router.navigate("/recipes/" + selected)
+    }
+
+    useEffect(() => {
+        services.ingredients
+            .findAll()
+            .then((data) => setIngredients(data))
+            .finally(() => setIsLoading(false))
+    }, [])
+
+    if (isLoading) {
+        return <Loading />
     }
 
     return (
@@ -47,13 +63,13 @@ export default function Home() {
                 }}
                 showsHorizontalScrollIndicator={false}
             >
-                {Array.from({ length: 100 }).map((item, index) => (
+                {ingredients.map((ingredient) => (
                     <Ingredient
-                        key={index}
-                        selected={selected.includes(String(index))}
-                        name="Tomate"
-                        image={}
-                        onPress={() => handleToggleSelected(String(index))}
+                        key={ingredient.id}
+                        selected={selected.includes(ingredient.id)}
+                        name={`${services.storage.imagePath}/${ingredient.name}`}
+                        image={ingredient.image}
+                        onPress={() => handleToggleSelected(ingredient.id)}
                     />
                 ))}
             </ScrollView>
