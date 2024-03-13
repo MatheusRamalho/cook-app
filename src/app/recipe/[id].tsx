@@ -40,8 +40,6 @@ export default function Recipe() {
         return <Redirect href="/" />
     }
 
-    console.log(ingredients)
-
     return (
         <View className="flex-1">
             <Image className="w-full h-48 bg-gray-300" source={{ uri: recipe.image }} alt="" />

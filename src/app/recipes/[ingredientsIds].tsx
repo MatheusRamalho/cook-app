@@ -35,8 +35,6 @@ export default function Recipes() {
         return <Loading />
     }
 
-    console.log(recipes)
-
     return (
         <View className="flex-1">
             <View className="pt-16 px-8 mb-3">

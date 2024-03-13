@@ -28,7 +28,6 @@ export default function Home() {
     }
 
     function handleSearch() {
-        // console.log(`recipes/${selected}`)
         router.navigate(`/recipes/${selected}`)
     }
 
