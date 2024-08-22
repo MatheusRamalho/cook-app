@@ -63,10 +63,10 @@ export default function Home() {
                 showsHorizontalScrollIndicator={false}
             >
                 {ingredients.length > 0 &&
-                    ingredients.map((ingredient) => (
+                    ingredients.map((ingredient, index) => (
                         <>
                             <Ingredient
-                                key={ingredient.id}
+                                key={ingredient.id + index}
                                 name={ingredient.name}
                                 image={`${services.storage.imagePath}/${ingredient.image}`}
                                 selected={selected.includes(ingredient.id)}

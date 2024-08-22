@@ -6,6 +6,10 @@
 
 <br />
 
+https://github.com/user-attachments/assets/ddd6ac0a-a869-4272-a993-cfb4fddfe15f
+
+<br />
+
 
 ## 📌 Tópicos
 
@@ -87,6 +91,11 @@ Em seguida, inicie o projeto.
 ```bash
 npx expo start
 ```
+
+É necessário criar uma conta no Supabase, para que o projeto funcione corretamente, lá está localizado o banco de dados do app.
+- Crie um novo projeto no supabase com senha.
+- Crie as tabelas necessárias (existe um arquivo schema.png na pasta database como exemplo)
+- Popule as tabelas com registros (os arquivos csv estão na pasta database)
 
 <br />
 
